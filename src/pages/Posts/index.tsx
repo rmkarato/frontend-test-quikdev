@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import * as C from "./styles";
+import { useNavigate } from "react-router";
 
 const baseUrl = "https://jsonplaceholder.typicode.com";
 
@@ -12,6 +13,7 @@ interface IPost {
 }
 
 const Posts = () => {
+  const navigate = useNavigate();
   const [posts, setPosts] = useState<IPost[]>([]);
 
   useEffect(() => {
@@ -27,6 +29,10 @@ const Posts = () => {
     }
   }
 
+  const goToPostDetails = (id: number) => {
+    navigate(`/posts/${id}`);
+  };
+
   return (
     <C.Container>
       <h2>Posts</h2>
@@ -37,7 +43,7 @@ const Posts = () => {
             <C.CardContainer>
               <h3>{post.title}</h3>
               <C.Text>{post.body}</C.Text>
-              <C.Button type="button">Show more</C.Button>
+              <C.Button type="button" onClick={() => goToPostDetails(post.id)}>Show more</C.Button>
             </C.CardContainer>
           )
         })}
