@@ -6,8 +6,9 @@ import { removeToken } from "../../services/auth";
 
 import DeleteIcon from '@material-ui/icons/Delete';
 import ChatBubbleOutlineIcon from '@material-ui/icons/ChatBubbleOutline';
-import { getPostList, updatePost } from "../../services/post";
+import { getPostList } from "../../services/post";
 import { IPost } from "../../interfaces/post";
+
 
 const baseUrl = "https://jsonplaceholder.typicode.com";
 
@@ -38,6 +39,10 @@ const Posts = () => {
     window.location.reload();
   }
 
+  const goToEditPost = (id: any, postId: any) => {
+    navigate(`/users/${id}/posts/new/${postId}`);
+  }
+
   const deletePost = async(id: any) => {
     if(window.confirm("Tem certeza que deseja deletar este post?")) {
       await axios.delete(`${baseUrl}/posts/${id}`)
@@ -63,7 +68,7 @@ const Posts = () => {
               <C.Button type="button" onClick={() => goToPostDetails(post.id)}>Ver mais</C.Button>
               <div onClick={() => deletePost(post.id)} ><DeleteIcon /></div>
               <div onClick={() => goToPostDetails(post.id)}> <ChatBubbleOutlineIcon /></div>
-              <C.Button type="button" onClick={() => updatePost(setPosts, post.id)}>Update Post</C.Button>
+              <C.Button type="button" onClick={() => goToEditPost(post.userId, post.id)}>Update Post</C.Button>
             </C.CardContainer>
           )
         })}

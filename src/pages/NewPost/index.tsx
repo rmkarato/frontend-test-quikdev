@@ -35,6 +35,7 @@ const NewPost = () => {
 
   return (
     <div>
+      <button onClick={() => window.history.back()}>Voltar</button>
       <h2>Novo Post</h2>
       <form>
         <input 
