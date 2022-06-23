@@ -11,7 +11,10 @@ Criar uma aplicacao web com as seguintes funcionalidades:
 
 ## Stack
 
-<p align="justify"> Este é um projeto de front-end feito utilizando Typescript (ReactJS) e CSS (styled-components).</p>
+<p align="justify"> Este é um projeto de front-end feito utilizando Typescript (ReactJS) e CSS (styled-components); </p>
+<p align="justify"> Para consumir API foi utilizado o axios; </p>
+<p align="justify"> O gerenciamento de rotas foi realizado através do react-router-dom; </p>
+<p align="justify"> Para auxílio na construçao da interface, foi utilizado o Material-UI. </p>
 
 ## O que o projeto é capaz de fazer
 
@@ -38,6 +41,26 @@ Criar uma aplicacao web com as seguintes funcionalidades:
 ## Deploy da Aplicação 
 
 >
+
+## API Consumida
+
+<a href="https://jsonplaceholder.typicode.com/">JSONPlaceholder</a>
+
+## Autenticaçao
+
+<p align="justify"> Para login utilizar as credenciais: </p>
+
+> username: teste
+
+> senha: teste
+
+<p align="justify"> Para cadastro utilizar as credenciais: </p>
+
+> name: teste
+
+> username: teste
+
+> senha: teste
 
 ## Contato
 
