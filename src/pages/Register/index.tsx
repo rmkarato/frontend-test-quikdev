@@ -1,13 +1,24 @@
 import * as React from "react";
 import { useNavigate } from "react-router";
+import {
+  TextField,
+  InputAdornment,
+  IconButton,
+} from "@material-ui/core";
+
+import Visibility from "@material-ui/icons/Visibility";
+import VisibilityOff from "@material-ui/icons/VisibilityOff";
 
 import { UseRegister } from "../../hooks";
+import { setToken } from "../../services/auth";
 import * as C from "./styles";
+import { useState } from "react";
 
 interface RegisterState {
 	name: string;
 	username: string;
   password: string;
+	confirmPassword: string;
   isLoading: boolean;
   error: string;
   isRegistered: boolean;
@@ -48,6 +59,7 @@ type RegisterAction =
 					name: "",
 					username: "",
 					password: "",
+					confirmPassword: "",
 					error: "Náo foi possível registrar!",
 				};
 			}
@@ -66,6 +78,7 @@ type RegisterAction =
 		name: "",
 		username: "",
 		password: "",
+		confirmPassword: "",
 		isLoading: false,
 		error: "",
 		isRegistered: false,
@@ -74,19 +87,36 @@ type RegisterAction =
 const Register = () => {
 	const navigate = useNavigate();
 	const [state, dispatch] = React.useReducer(registerReducer, initialState);
-  const { name, username, password, isLoading, error, isRegistered } = state;
+  const { name, username, password, confirmPassword, isLoading, error, isRegistered } = state;
+	const [showPassword, setShowPassword] = useState(false);
+	const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
 	const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
 		dispatch({ type: "register" });
 
 		try {
-			await UseRegister({ name, username, password });
-			dispatch({ type: "success" });
+			if (password === confirmPassword) {
+				await UseRegister({ name, username, password, confirmPassword });
+				setToken();
+				dispatch({ type: "success" });
+			} else {
+				alert("Senhas nao conferem");
+				dispatch({ type: "error" });
+			}
+			
 		} catch (error) {
 			dispatch({ type: "error" });
 		}
 	};
+
+	const handleShowPassword = () => {
+    setShowPassword(!showPassword);
+  }
+
+	const handleShowConfirmPassword = () => {
+    setShowConfirmPassword(!showConfirmPassword);
+  }
 
 	const goToPostPage = () => {
 		navigate("/posts");
@@ -103,8 +133,12 @@ const Register = () => {
 					<C.Form onSubmit={onSubmit}>
 						{error && <C.Error>{error}</C.Error>}
 						<p> Please Register!</p>
-						<C.Input
+						<TextField
               type="text"
+              variant="outlined"
+              required
+              fullWidth
+              label="name"
               placeholder="name"
               value={name}
               onChange={(e) =>
@@ -115,8 +149,13 @@ const Register = () => {
                 })
               }
             />
-						<C.Input
+
+					 <TextField
               type="text"
+              variant="outlined"
+              required
+              fullWidth
+              label="username"
               placeholder="username"
               value={username}
               onChange={(e) =>
@@ -127,19 +166,61 @@ const Register = () => {
                 })
               }
             />
-            <C.Input
-              type="password"
-              placeholder="password"
-              autoComplete="new-password"
-              value={password}
+
+            <TextField
+              name="password"
               onChange={(e) =>
                 dispatch({
                   type: "field",
                   fieldName: "password",
                   payload: e.currentTarget.value,
-                })
-              }
+                })}
+              variant="outlined"
+              required
+              fullWidth
+              label="password"
+              type={showPassword ? "text" : "password"}
+              InputProps={{
+                endAdornment: (
+                  <InputAdornment position="end">
+                    <IconButton
+                      aria-label="toggle password visibility"
+                      onClick={handleShowPassword}
+                    >
+                      {showPassword ? <Visibility /> : <VisibilityOff />}
+                    </IconButton>
+                  </InputAdornment>
+                ),
+              }}
             />
+
+						<TextField
+              name="confirm password"
+              onChange={(e) =>
+                dispatch({
+                  type: "field",
+                  fieldName: "confirmPassword",
+                  payload: e.currentTarget.value,
+                })}
+              variant="outlined"
+              required
+              fullWidth
+              label="confirm password"
+              type={showConfirmPassword ? "text" : "password"}
+              InputProps={{
+                endAdornment: (
+                  <InputAdornment position="end">
+                    <IconButton
+                      aria-label="toggle password visibility"
+                      onClick={handleShowConfirmPassword}
+                    >
+                      {showConfirmPassword ? <Visibility /> : <VisibilityOff />}
+                    </IconButton>
+                  </InputAdornment>
+                ),
+              }}
+            />
+
             <C.Button type="submit" className="submit" disabled={isLoading}>
               {isLoading ? "Registering....." : "Register"}
             </C.Button>

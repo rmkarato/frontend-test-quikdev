@@ -1,7 +1,17 @@
 import * as React from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router";
+import {
+  TextField,
+  InputAdornment,
+  IconButton,
+} from "@material-ui/core";
+
+import Visibility from "@material-ui/icons/Visibility";
+import VisibilityOff from "@material-ui/icons/VisibilityOff";
 
 import { UseLogin } from "../../hooks";
+import { setToken } from "../../services/auth";
 import * as C from "./styles";
 
 interface LoginState {
@@ -72,6 +82,8 @@ const Login = () => {
 	const navigate = useNavigate();
   const [state, dispatch] = React.useReducer(loginReducer, initialState);
   const { username, password, isLoading, error, isLoggedIn } = state;
+  const [showPassword, setShowPassword] = useState(false);
+
 
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -79,11 +91,16 @@ const Login = () => {
 
     try {
       await UseLogin({ username, password });
+      setToken();
       dispatch({ type: "success" });
     } catch (error) {
       dispatch({ type: "error" });
     }
   };
+  
+  const handleShowPassword = () => {
+    setShowPassword(!showPassword);
+  }
 
 	const goToPostPage = () => {
 		navigate("/posts");
@@ -97,8 +114,12 @@ const Login = () => {
           <C.Form onSubmit={onSubmit}>
             {error && <C.Error>{error}</C.Error>}
             <p> Please Login!</p>
-            <C.Input
+            <TextField
               type="text"
+              variant="outlined"
+              required
+              fullWidth
+              label="username"
               placeholder="username"
               value={username}
               onChange={(e) =>
@@ -109,19 +130,34 @@ const Login = () => {
                 })
               }
             />
-            <C.Input
-              type="password"
-              placeholder="password"
-              autoComplete="new-password"
-              value={password}
+
+            <TextField
+              name="password"
               onChange={(e) =>
                 dispatch({
                   type: "field",
                   fieldName: "password",
                   payload: e.currentTarget.value,
-                })
-              }
+                })}
+              variant="outlined"
+              required
+              fullWidth
+              label="password"
+              type={showPassword ? "text" : "password"}
+              InputProps={{
+                endAdornment: (
+                  <InputAdornment position="end">
+                    <IconButton
+                      aria-label="toggle password visibility"
+                      onClick={handleShowPassword}
+                    >
+                      {showPassword ? <Visibility /> : <VisibilityOff />}
+                    </IconButton>
+                  </InputAdornment>
+                ),
+              }}
             />
+
             <C.Button type="submit" disabled={isLoading}>
               {isLoading ? "Loggin in....." : "Login"}
             </C.Button>
