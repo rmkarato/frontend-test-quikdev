@@ -42,17 +42,6 @@ const PostDetails = () => {
     window.location.reload();
   }
 
-  // const deleteComment = async(id: any, postId: any) => {
-  //   if(window.confirm("Tem certeza que deseja deletar este comentário?")) {
-  //     await axios.delete(`${baseUrl}/posts/${id}/comments`)
-  //     try {
-  //       setComments(comments.filter((item) => { return item.postId !== postId}))
-  //     } catch(error) {
-  //       alert("Não foi possível apagar este comentário!")
-  //     }
-  //   } 
-  // }
-
   return (
     <C.Container>
       <h2>Post Details</h2>
@@ -77,7 +66,6 @@ const PostDetails = () => {
           <p>{item.email}</p>
           <p>{item.name}</p>
           <p>{item.body}</p>
-          {/* <div onClick={() => deleteComment(item.id, item.postId)} ><DeleteIcon /></div> */}
           </>
         )
       })}

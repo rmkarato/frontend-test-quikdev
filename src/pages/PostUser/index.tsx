@@ -27,6 +27,7 @@ const PostUser = () => {
 
   return (
     <div>
+      <button onClick={() => window.history.back()}>Voltar</button>
       <h2>Lista de Post de Usuários</h2>
       <Link to={`new`}>Criar Post</Link>
       <ul>
