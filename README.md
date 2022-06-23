@@ -1,46 +1,51 @@
-# Getting Started with Create React App
+# Teste Front-end - QuikDev
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+### TESTE PROPOSTO
 
-## Available Scripts
+Criar uma aplicacao web com as seguintes funcionalidades:
+- Sistema de autenticacao, cadastro, login, logout;
+- Exibiçao de posts com comenários;
+- Ediçao e remoçao de posts.
 
-In the project directory, you can run:
+### PROJETO
 
-### `yarn start`
+## Stack
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+<p align="justify"> Este é um projeto de front-end feito utilizando Typescript (ReactJS) e CSS (styled-components).</p>
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## O que o projeto é capaz de fazer
 
-### `yarn test`
+<p align="justify"> - Ele é dividido em duas partes: pública e privada; </p>
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+<p align="justify"> - Na área pública, é possível apenas ver a HomePage, cadastrar um usuário ou fazer login; </p>
 
-### `yarn build`
+<p align="justify"> - Na área privada - somente usuários com cadastro tem acesso, é possível ver posts, ver usuários, ver comentários, excluir, editar e adicionar posts; </p>
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Instruções Para Rodar
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+<p align="justify"> 1. Para instalar todas as dependências: </p>
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+> npm install 
 
-### `yarn eject`
+<p align="justify"> 2. Para rodar localmente o projeto:</p>
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+> npm run start 
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+<p align="justify"> 3. Para gerar uma versão estática do projeto (que ficará na pasta "build").</p>
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+> npm run build 
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+## Deploy da Aplicação 
 
-## Learn More
+>
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Contato
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+<p align="justify"> Renata Karato </p>
+<p align="justify"> Desenvolvedora Front-end </p>
+<p align="justify"> 11 9 9763-7438 </p>
+
+[![Github Badge](https://img.shields.io/badge/-Github-000?style=flat-square&logo=Github&logoColor=white&link=https://github.com/rmkarato)](https://github.com/rmkarato)       [![Linkedin Badge](https://img.shields.io/badge/-LinkedIn-blue?style=flat-square&logo=Linkedin&logoColor=white&link=https://www.linkedin.com/in/rmkarato/)](https://www.linkedin.com/in/rmkarato/)
+[![Whatsapp Badge](https://img.shields.io/badge/-Whatsapp-4CA143?style=flat-square&labelColor=4CA143&logo=whatsapp&logoColor=white&link=https://api.whatsapp.com/send?phone=seu_telefone_5511997637438&text=Olá!)](https://api.whatsapp.com/send?phone=seu_telefone_5511997637438&text=Olá!)
+[![Gmail Badge](https://img.shields.io/badge/-Gmail-c14438?style=flat-square&logo=Gmail&logoColor=white&link=mailto:rmkarato@gmail.com)](mailto:rmkarato@gmail.com)
+
