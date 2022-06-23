@@ -1,14 +1,23 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { IUser } from "../../interfaces/user"
 import { getUsers } from "../../services/user";
 
 const Users = () => {
+  const navigate = useNavigate();
   const [users, setUsers] = useState<IUser[]>([]);
 
   useEffect(() => {
     getUsers(setUsers);
-  }, []);
+
+    const token = window.localStorage.getItem("token")
+
+    if(token === null) {
+      navigate("/login")
+    } else {
+      navigate("/users")
+    }
+  }, [navigate]);
 
   return (
     <div>

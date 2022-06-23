@@ -12,7 +12,7 @@ import VisibilityOff from "@material-ui/icons/VisibilityOff";
 import { UseRegister } from "../../hooks";
 import { setToken } from "../../services/auth";
 import * as C from "./styles";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 interface RegisterState {
 	name: string;
@@ -91,6 +91,16 @@ const Register = () => {
 	const [showPassword, setShowPassword] = useState(false);
 	const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
+  useEffect(() => {
+    const token = window.localStorage.getItem("token")
+
+    if(token === null) {
+      navigate("/register")
+    } else {
+      navigate("/posts")
+    }
+  }, [navigate]);
+
 	const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
 		dispatch({ type: "register" });
@@ -100,6 +110,7 @@ const Register = () => {
 				await UseRegister({ name, username, password, confirmPassword });
 				setToken();
 				dispatch({ type: "success" });
+        window.location.reload();
 			} else {
 				alert("Senhas nao conferem");
 				dispatch({ type: "error" });

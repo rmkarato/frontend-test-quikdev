@@ -18,7 +18,15 @@ const Posts = () => {
 
   useEffect(() => {
     getPostList(setPosts);
-  }, []);
+
+    const token = window.localStorage.getItem("token");
+
+    if(token === null) {
+      navigate("/login")
+    } else {
+      navigate("/posts")
+    }
+  }, [navigate]);
 
   const goToPostDetails = (id: number) => {
     navigate(`/posts/${id}`);
@@ -27,6 +35,7 @@ const Posts = () => {
   const logout = () => {
     removeToken();
     navigate("/");
+    window.location.reload();
   }
 
   const deletePost = async(id: any) => {

@@ -39,6 +39,7 @@ const PostDetails = () => {
   const logout = () => {
     removeToken();
     navigate("/");
+    window.location.reload();
   }
 
   // const deleteComment = async(id: any, postId: any) => {

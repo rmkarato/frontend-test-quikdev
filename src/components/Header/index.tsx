@@ -1,8 +1,16 @@
 import * as React from "react";
 import { Link } from 'react-router-dom';
+import { removeToken } from "../../services/auth";
 import * as C from "./styles";
 
 const Header = () => {
+  const token = window.localStorage.getItem("token");
+
+  const logout = () => {
+    removeToken();
+    window.location.reload();
+  }
+
   return (
     <C.Container>
       <ul>
@@ -10,7 +18,7 @@ const Header = () => {
           <Link to='/'>Home</Link>
         </li>
         <li>
-         <Link to='/login'>Login</Link> 
+         {token === null ? <Link to='/login'>Login</Link> : <Link onClick={() => logout()} to='/'>Logout</Link>}
         </li>
         <li>
           <Link to='/register'>Cadastrar</Link>

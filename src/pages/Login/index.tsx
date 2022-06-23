@@ -1,5 +1,5 @@
 import * as React from "react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 import {
   TextField,
@@ -11,7 +11,7 @@ import Visibility from "@material-ui/icons/Visibility";
 import VisibilityOff from "@material-ui/icons/VisibilityOff";
 
 import { UseLogin } from "../../hooks";
-import { setToken } from "../../services/auth";
+import { isAuthenticated, setToken } from "../../services/auth";
 import * as C from "./styles";
 
 interface LoginState {
@@ -84,6 +84,15 @@ const Login = () => {
   const { username, password, isLoading, error, isLoggedIn } = state;
   const [showPassword, setShowPassword] = useState(false);
 
+  useEffect(() => {
+    const token = window.localStorage.getItem("token")
+
+    if(token === null) {
+        navigate("/login")
+    } else {
+      navigate("/posts")
+    }
+  }, [navigate]);
 
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -93,6 +102,7 @@ const Login = () => {
       await UseLogin({ username, password });
       setToken();
       dispatch({ type: "success" });
+      window.location.reload();
     } catch (error) {
       dispatch({ type: "error" });
     }
