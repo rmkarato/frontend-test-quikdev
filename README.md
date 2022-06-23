@@ -40,7 +40,7 @@ Criar uma aplicacao web com as seguintes funcionalidades:
 
 ## Deploy da Aplicação 
 
->
+> https://frontend-test-quikdev.vercel.app/
 
 ## API Consumida
 
