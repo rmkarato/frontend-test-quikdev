@@ -1,7 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import Footer from './components/Footer';
-import Header from './components/Header';
+import NavBar from './components/NavBar';
 import Home from './pages/Home';
 import Login from './pages/Login';
 import NewPost from './pages/NewPost';
@@ -14,7 +13,7 @@ import Users from './pages/Users';
 const App = () => {
   return (
     <Router>
-      <Header />
+      <NavBar />
       <Routes>
         <Route path='/' element={<Home/>} />
         <Route path='/login' element={<Login/>} />
@@ -26,7 +25,6 @@ const App = () => {
         <Route path='/posts' element={<Posts/>} /> 
         <Route path='/posts/:id' element={<PostDetails/>} />            
       </Routes>
-      <Footer />
     </Router>
   );
 }

@@ -1,17 +1,13 @@
 import * as React from "react";
-import axios from "axios";
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router";
-import { removeToken } from "../../services/auth";
 import { getComments, getPostDetails } from "../../services/post";
 import { getUserDetails } from "../../services/user";
 
-import DeleteIcon from '@material-ui/icons/Delete';
+import AccountCircleIcon from '@material-ui/icons//AccountCircle';
 import * as C from "./styles";
 import { IUser } from "../../interfaces/user";
 import { IComment, IPostDetails } from "../../interfaces/post";
-
-const baseUrl = "https://jsonplaceholder.typicode.com";
 
 const PostDetails = () => {
   const navigate = useNavigate();
@@ -25,7 +21,7 @@ const PostDetails = () => {
   useEffect(() => {
     getPostDetails(setPostDetails, id);
     getUserDetails(setUser, postDetails?.userId);
-  }, [postDetails?.userId]);
+  }, [id, postDetails?.userId]);
 
   const goToPosts = () => {
     navigate("/posts");
@@ -36,22 +32,19 @@ const PostDetails = () => {
     setShowComments(!showComments);
   }
 
-  const logout = () => {
-    removeToken();
-    navigate("/");
-    window.location.reload();
-  }
-
   return (
     <C.Container>
-      <h2>Post Details</h2>
-      <C.Button type="button" onClick={() => logout()}>Logout</C.Button> 
-      <C.Button type="button" onClick={() => goToPosts()}>Voltar Posts</C.Button>
+      <C.Title>Detalhes</C.Title>
+      <C.TextLink onClick={() => goToPosts()}>Voltar Para Posts</C.TextLink>
+      <C.CardContainer>
       {user &&
-        <>
-          <p>{user.name}</p>
-          <p>{`@${user.username}`.toLowerCase()}</p>
-        </>
+        <C.ProfileContainer>
+          <AccountCircleIcon style={{ fontSize: 80 }} />
+          <C.InfoContainer>
+            <C.Text><b>{user.name}</b></C.Text>
+            <C.Text>{`@${user.username}`.toLowerCase()}</C.Text>
+          </C.InfoContainer>
+        </C.ProfileContainer>
       }
       {postDetails &&
         <>
@@ -59,16 +52,17 @@ const PostDetails = () => {
         <p>{postDetails.body}</p>
         </>
       }
-      <C.Button type="button" onClick={() => goToComments()}>{!showComments ? <>Ver Comentários</> : <>Ocultar Comentários</>}</C.Button>
+      <C.TextLink onClick={() => goToComments()}>{!showComments ? <>Ver Comentários</> : <>Ocultar Comentários</>}</C.TextLink>
       {showComments && comments.map((item) => {
         return (
-          <>
-          <p>{item.email}</p>
-          <p>{item.name}</p>
-          <p>{item.body}</p>
-          </>
+          <C.CommentsContainer>
+          <C.TextCommentEmail> <AccountCircleIcon style={{ marginRight: 5 }} /><b>{`${item.email}`.toLowerCase()}</b></C.TextCommentEmail>
+          <C.TextComment><b>{item.name}</b></C.TextComment>
+          <C.TextComment>{item.body}</C.TextComment>
+          </C.CommentsContainer>
         )
       })}
+      </C.CardContainer>
     </C.Container>
   );
 };

@@ -11,7 +11,7 @@ import Visibility from "@material-ui/icons/Visibility";
 import VisibilityOff from "@material-ui/icons/VisibilityOff";
 
 import { UseLogin } from "../../hooks";
-import { isAuthenticated, setToken } from "../../services/auth";
+import { setToken } from "../../services/auth";
 import * as C from "./styles";
 
 interface LoginState {
@@ -112,6 +112,10 @@ const Login = () => {
     setShowPassword(!showPassword);
   }
 
+  const goToRegisterPage = () => {
+    navigate("/register");
+  };
+
 	const goToPostPage = () => {
 		navigate("/posts");
 	};
@@ -123,8 +127,9 @@ const Login = () => {
 				 ) : (
           <C.Form onSubmit={onSubmit}>
             {error && <C.Error>{error}</C.Error>}
-            <p> Please Login!</p>
+            <C.Title>Login</C.Title>
             <TextField
+              style={{ marginBottom: 8 }}
               type="text"
               variant="outlined"
               required
@@ -142,6 +147,7 @@ const Login = () => {
             />
 
             <TextField
+              style={{ marginBottom: 8 }}
               name="password"
               onChange={(e) =>
                 dispatch({
@@ -152,7 +158,7 @@ const Login = () => {
               variant="outlined"
               required
               fullWidth
-              label="password"
+              label="senha"
               type={showPassword ? "text" : "password"}
               InputProps={{
                 endAdornment: (
@@ -169,8 +175,9 @@ const Login = () => {
             />
 
             <C.Button type="submit" disabled={isLoading}>
-              {isLoading ? "Loggin in....." : "Login"}
+              {isLoading ? "Fazendo Login....." : "Login"}
             </C.Button>
+            <C.Text onClick={() => goToRegisterPage()}>Não tem cadastro? Cadastrar.</C.Text>
           </C.Form>
         )}
       </C.LoginContainer>

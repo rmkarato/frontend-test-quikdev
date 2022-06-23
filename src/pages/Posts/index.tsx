@@ -2,13 +2,12 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import * as C from "./styles";
 import { useNavigate } from "react-router";
-import { removeToken } from "../../services/auth";
 
 import DeleteIcon from '@material-ui/icons/Delete';
 import ChatBubbleOutlineIcon from '@material-ui/icons/ChatBubbleOutline';
+import EditIcon from '@material-ui/icons/Edit';
 import { getPostList } from "../../services/post";
 import { IPost } from "../../interfaces/post";
-
 
 const baseUrl = "https://jsonplaceholder.typicode.com";
 
@@ -24,6 +23,7 @@ const Posts = () => {
 
     if(token === null) {
       navigate("/login")
+      alert("Voce precisa estar logado para acessar esta área.")
     } else {
       navigate("/posts")
     }
@@ -32,12 +32,6 @@ const Posts = () => {
   const goToPostDetails = (id: number) => {
     navigate(`/posts/${id}`);
   };
-
-  const logout = () => {
-    removeToken();
-    navigate("/");
-    window.location.reload();
-  }
 
   const goToEditPost = (id: any, postId: any) => {
     navigate(`/users/${id}/posts/new/${postId}`);
@@ -56,19 +50,20 @@ const Posts = () => {
 
   return (
     <C.Container>
-      <h2>Posts</h2>
-      <C.Button type="button" onClick={() => logout()}>Logout</C.Button>
+      <C.Title>Posts</C.Title>
       <div>{posts.length === 0 && <p>Carregando...</p>}</div>
       <C.PostContainer>
         {posts && posts.map((post) => {
           return (
             <C.CardContainer>
-              <h3>{post.title}</h3>
+              <C.PostTitle>{post.title}</C.PostTitle>
               <C.Text>{post.body}</C.Text>
-              <C.Button type="button" onClick={() => goToPostDetails(post.id)}>Ver mais</C.Button>
-              <div onClick={() => deletePost(post.id)} ><DeleteIcon /></div>
-              <div onClick={() => goToPostDetails(post.id)}> <ChatBubbleOutlineIcon /></div>
-              <C.Button type="button" onClick={() => goToEditPost(post.userId, post.id)}>Update Post</C.Button>
+              <C.TextLink onClick={() => goToPostDetails(post.id)}>Ver mais</C.TextLink>
+              <C.EditContainer>
+                <DeleteIcon style={{ marginRight: 10, marginLeft: 10, cursor: "pointer" }} onClick={() => deletePost(post.id)} />
+                <ChatBubbleOutlineIcon style={{ marginRight: 10, cursor: "pointer" }} onClick={() => goToPostDetails(post.id)} />
+                <EditIcon style={{ marginRight: 10, cursor: "pointer" }} onClick={() => goToEditPost(post.userId, post.id)}/>
+              </C.EditContainer>
             </C.CardContainer>
           )
         })}

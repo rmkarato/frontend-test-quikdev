@@ -133,6 +133,10 @@ const Register = () => {
 		navigate("/posts");
 	};
 
+  const goToLoginPage = () => {
+    navigate("/login");
+  };
+
   return (
     <C.Container>
 			<C.RegisterContainer>
@@ -143,14 +147,15 @@ const Register = () => {
 				) : (
 					<C.Form onSubmit={onSubmit}>
 						{error && <C.Error>{error}</C.Error>}
-						<p> Please Register!</p>
+						<C.Title>Cadastro</C.Title>
 						<TextField
+              style={{ marginBottom: 8 }}
               type="text"
               variant="outlined"
               required
               fullWidth
-              label="name"
-              placeholder="name"
+              label="nome"
+              placeholder="nome"
               value={name}
               onChange={(e) =>
                 dispatch({
@@ -162,6 +167,7 @@ const Register = () => {
             />
 
 					 <TextField
+              style={{ marginBottom: 8 }}
               type="text"
               variant="outlined"
               required
@@ -179,6 +185,7 @@ const Register = () => {
             />
 
             <TextField
+              style={{ marginBottom: 8 }}
               name="password"
               onChange={(e) =>
                 dispatch({
@@ -189,7 +196,7 @@ const Register = () => {
               variant="outlined"
               required
               fullWidth
-              label="password"
+              label="senha"
               type={showPassword ? "text" : "password"}
               InputProps={{
                 endAdornment: (
@@ -206,6 +213,7 @@ const Register = () => {
             />
 
 						<TextField
+              style={{ marginBottom: 8 }}
               name="confirm password"
               onChange={(e) =>
                 dispatch({
@@ -216,7 +224,7 @@ const Register = () => {
               variant="outlined"
               required
               fullWidth
-              label="confirm password"
+              label="confirmar senha"
               type={showConfirmPassword ? "text" : "password"}
               InputProps={{
                 endAdornment: (
@@ -233,8 +241,9 @@ const Register = () => {
             />
 
             <C.Button type="submit" className="submit" disabled={isLoading}>
-              {isLoading ? "Registering....." : "Register"}
+              {isLoading ? "Registrando....." : "Registrar"}
             </C.Button>
+            <C.Text onClick={() => goToLoginPage()}>Já tem cadastro? Fazer login.</C.Text>
 					</C.Form>
 				)}
 			</C.RegisterContainer>
