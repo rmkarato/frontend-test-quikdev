@@ -15,6 +15,7 @@ const NewPost = () => {
     const url = method === "put" ? `${baseUrl}/posts/${postId}` : `${baseUrl}/posts`;
     await axios[method](url, { userId: id, title, body: content }).then((response) => {
       console.log(response);
+      alert(method === "put" ? "Post atualizado com sucesso." : "Post criado com sucesso")
     })
   };
 
