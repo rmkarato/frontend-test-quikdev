@@ -1,36 +1,21 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-  text-align: center;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   margin-left: 20%;
   height: 100vh;
 `;
 
-export const RegisterContainer = styled.div`
-  width: 400px; 
-`;
-
-export const Form = styled.form`
-  display: flex;
-  flex-direction: column;
-  padding: 20px;
-`;
-
-export const Title = styled.p`
-  font-size: 32px;
-  font-weight: bold;
-`;
-
 export const Button = styled.button`
   outline: auto;
   cursor: pointer;
-  padding: 10px;
-  font-size: 16px;
+  padding: 10px 20px;
   background-color: #00A2A1;
   color: #fff;
+  font-size: 16px;
   border-radius: 15px;
 
   &:hover {
@@ -38,9 +23,15 @@ export const Button = styled.button`
   }
 `;
 
-export const Error = styled.p`
-  color: red;
+export const Title = styled.p`
+  font-size: 32px;
   font-weight: bold;
+`;
+
+export const Subtitle = styled.p`
+  font-size: 24px;
+  margin-bottom: 42px;
+  text-align: center;
 `;
 
 export const Text = styled.p`

@@ -1,6 +1,9 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import axios from "axios";
+import { TextField } from "@material-ui/core";
+
+import * as C from "./styles";
 
 const baseUrl = "https://jsonplaceholder.typicode.com";
 
@@ -15,7 +18,9 @@ const NewPost = () => {
     const url = method === "put" ? `${baseUrl}/posts/${postId}` : `${baseUrl}/posts`;
     await axios[method](url, { userId: id, title, body: content }).then((response) => {
       console.log(response);
-      alert(method === "put" ? "Post atualizado com sucesso." : "Post criado com sucesso")
+
+      alert(method === "put" ? "Post atualizado com sucesso." : "Post criado com sucesso");
+      window.history.back();
     })
   };
 
@@ -34,30 +39,37 @@ const NewPost = () => {
 
 
   return (
-    <div>
-      <button onClick={() => window.history.back()}>Voltar</button>
-      <h2>Novo Post</h2>
-      <form>
-        <input 
+    <C.Container>
+      <C.Title>{method === "put" ? <>Editar Post</> : <>Novo Post</>}</C.Title>
+      <C.TextLink onClick={() => window.history.back()}>Voltar</C.TextLink>
+      <C.Form>
+        <TextField 
+          style={{ marginBottom: 8 }}
           type="text"
-          placeholder="Titulo"
-          defaultValue={title}
+          variant="outlined"
+          required
+          fullWidth
+          label={method === "put" ? "" : "título"}
+          value={title}
+          placeholder="título"
           onChange={(e) => setTitle(e.target.value)}
         />
-        <br />
-        <br />
-        <textarea 
-          placeholder="Conteúdo"
+        <TextField 
+          style={{ marginBottom: 8 }}
+          type="text"
+          variant="outlined"
+          placeholder="conteúdo"
+          label={method === "put" ? "" : "conteúdo"}
+          multiline
           rows={4}
-          cols={50}
-          defaultValue={content}
+          required
+          fullWidth
+          value={content}
           onChange={(e) => setContent(e.target.value)}
         />
-        <br />
-        <br />
-        <button type="submit"onClick={handleSubmit}>{" "} Salvar {" "}</button>
-      </form>
-    </div>
+        <C.Button onClick={handleSubmit}>Salvar</C.Button>
+      </C.Form>
+    </C.Container>
   );
 };
 

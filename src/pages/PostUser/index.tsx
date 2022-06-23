@@ -1,8 +1,10 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { IPost } from "../../interfaces/post";
 import { getPostUser } from "../../services/post";
+
+import * as C from "./styles";
 
 const baseUrl = "https://jsonplaceholder.typicode.com";
 
@@ -26,19 +28,22 @@ const PostUser = () => {
   };
 
   return (
-    <div>
-      <button onClick={() => window.history.back()}>Voltar</button>
-      <h2>Lista de Post de Usuários</h2>
-      <Link to={`new`}>Criar Post</Link>
-      <ul>
+    <C.Container>
+      <C.Title>Posts do Usuário</C.Title>
+      <C.TextLink onClick={() => window.history.back()}>Voltar</C.TextLink>
+      <C.Button><C.StyledLink to={`new`}>Criar Post</C.StyledLink></C.Button>
+      <C.Ul>
         {postsUser && postsUser.map((post) => (
-          <li key={post.id}>
-            <Link to={`new/${post.id}`}><b>{post.title}</b></Link>
-            <button onClick={() => handleDelete(+post.id)}><b>Excluir</b></button>
-          </li>
+           <C.CardContainer>
+              <C.TextTitle><b>{post.title}</b></C.TextTitle>
+              <C.ButtonEdit>
+                <C.Button><C.StyledLink to={`new/${post.id}`}>Editar Post</C.StyledLink></C.Button>
+                <C.Button onClick={() => handleDelete(+post.id)}>Excluir Post</C.Button>
+              </C.ButtonEdit>
+          </C.CardContainer>
         ))}
-      </ul>
-    </div>
+      </C.Ul>
+    </C.Container>
   )
 }
 

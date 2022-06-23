@@ -3,20 +3,11 @@ import styled from "styled-components";
 export const Container = styled.div`
   text-align: center;
   display: flex;
-  align-items: center;
+  align-content: center;
   justify-content: center;
-  margin-left: 20%;
-  height: 100vh;
-`;
-
-export const RegisterContainer = styled.div`
-  width: 400px; 
-`;
-
-export const Form = styled.form`
-  display: flex;
   flex-direction: column;
-  padding: 20px;
+
+  margin-left: 20%;
 `;
 
 export const Title = styled.p`
@@ -24,13 +15,22 @@ export const Title = styled.p`
   font-weight: bold;
 `;
 
+export const TextLink = styled.p`
+  color: #000;
+  cursor: pointer;
+  font-size: 14px;
+  text-decoration: underline;
+  margin-bottom: 46px;
+`;
+
 export const Button = styled.button`
+  width: 20%;
   outline: auto;
   cursor: pointer;
-  padding: 10px;
-  font-size: 16px;
+  padding: 10px 20px;
   background-color: #00A2A1;
   color: #fff;
+  font-size: 16px;
   border-radius: 15px;
 
   &:hover {
@@ -38,16 +38,9 @@ export const Button = styled.button`
   }
 `;
 
-export const Error = styled.p`
-  color: red;
-  font-weight: bold;
-`;
-
-export const Text = styled.p`
-  color: #969696;
-  cursor: pointer;
-  font-size: 16px;
-  &:hover {
-    text-decoration: underline;
-  }
+export const Form = styled.form`
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  align-items: center;
 `;
