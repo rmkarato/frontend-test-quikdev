@@ -22,7 +22,7 @@ Criar uma aplicacao web com as seguintes funcionalidades:
 
 <p align="justify"> - Na área pública, é possível apenas ver a HomePage, cadastrar um usuário ou fazer login; </p>
 
-<p align="justify"> - Na área privada - somente usuários com cadastro tem acesso, é possível ver posts, ver usuários, ver comentários, excluir, editar e adicionar posts; </p>
+<p align="justify"> - Na área privada - somente usuários com cadastro tem acesso (através de token gerado e guardado no local storage), é possível ver posts, listar usuários, ver comentários dos posts, bem como excluir, editar e adicionar posts. </p>
 
 ## Instruções Para Rodar
 
