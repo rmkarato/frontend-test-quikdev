@@ -28,15 +28,15 @@ Criar uma aplicacao web com as seguintes funcionalidades:
 
 <p align="justify"> 1. Para instalar todas as dependências: </p>
 
-> npm install 
+``` npm install ```
 
 <p align="justify"> 2. Para rodar localmente o projeto:</p>
 
-> npm run start 
+``` npm run start ```
 
 <p align="justify"> 3. Para gerar uma versão estática do projeto (que ficará na pasta "build").</p>
 
-> npm run build 
+``` npm run build ```
 
 ## Deploy da Aplicação 
 
