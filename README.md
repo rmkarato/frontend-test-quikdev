@@ -9,6 +9,8 @@ Criar uma aplicacao web com as seguintes funcionalidades:
 
 ### PROJETO
 
+![Gravação de Tela 2022-06-23 às 21 33 10](https://user-images.githubusercontent.com/63520542/175438809-fcb20a76-8bbf-49e8-9483-52fd14a80639.gif)
+
 ## Stack
 
 <p align="justify"> Este é um projeto de front-end utilizando Typescript (ReactJS) e CSS (styled-components); </p>
