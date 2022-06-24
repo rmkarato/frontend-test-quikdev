@@ -11,8 +11,8 @@ Criar uma aplicacao web com as seguintes funcionalidades:
 
 ## Stack
 
-<p align="justify"> Este é um projeto de front-end feito utilizando Typescript (ReactJS) e CSS (styled-components); </p>
-<p align="justify"> Para consumir API foi utilizado o axios; </p>
+<p align="justify"> Este é um projeto de front-end utilizando Typescript (ReactJS) e CSS (styled-components); </p>
+<p align="justify"> Para consumir a API foi utilizado o axios; </p>
 <p align="justify"> O gerenciamento de rotas foi realizado através do react-router-dom; </p>
 <p align="justify"> Para auxílio na construçao da interface, foi utilizado o Material-UI. </p>
 
@@ -50,17 +50,30 @@ Criar uma aplicacao web com as seguintes funcionalidades:
 
 <p align="justify"> Para login utilizar as credenciais: </p>
 
-> username: teste
-
-> senha: teste
+```
+username: teste
+senha: teste
+```
 
 <p align="justify"> Para cadastro utilizar as credenciais: </p>
 
-> name: teste
+``` 
+name: teste 
+username: teste 
+senha: teste
+```
 
-> username: teste
+## Rotas
 
-> senha: teste
+``` "/" ``` - Página inicial <br />
+``` "/register" ``` - Fazer registro <br />
+``` "/login" ``` - Fazer login <br />
+``` "/posts" ``` - Lista todos os posts <br />
+``` "/posts/:id" ``` - Detalha determinado post <br />
+``` "/users" ``` - Lista todos os usuários <br />
+``` "/users/:id/posts" ``` - Lista todos os posts de determinado usuário <br />
+``` "/users/:id/posts/new" ``` - Cria um novo post <br />
+```"/users/:id/posts/new/:postId" ``` - Edita um post existente <br />
 
 ## Contato
 
